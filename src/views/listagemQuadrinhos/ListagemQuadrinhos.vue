@@ -1,6 +1,5 @@
 <template lang="pug">
-  div
-    ListagemQuadrinhosApresentar
+  ListagemQuadrinhosApresentar
 </template>
 
 <script>
