@@ -5,8 +5,38 @@
   )
     v-toolbar-title.text-h5 HQ Shop
     v-spacer
-    v-btn(
-      icon
+    v-badge(
+      avatar
+      overlap
+      color="accent"
+      :content="qtdeItensCarrinho"
+      dark
+      offset-y="20"
     )
-      v-icon mdi-cart
+      v-btn(
+        icon
+        :disabled="qtdeItensCarrinho <= 0"
+        @click="abrirCarrinho"
+      )
+        v-icon mdi-cart
 </template>
+
+<script>
+import { mapGetters } from 'vuex';
+
+export default {
+  name: 'AppBar',
+
+  computed: {
+    ...mapGetters([
+      'qtdeItensCarrinho',
+    ]),
+  },
+
+  methods: {
+    abrirCarrinho() {
+      this.$router.push({ name: 'Carrinho' });
+    },
+  },
+};
+</script>
