@@ -4,6 +4,7 @@
     hover
     style="overflow: hidden"
     :class="[quadrinho.raro ? 'quadrinho-raro' : '']"
+    @click="detalharQuadrinho(quadrinho)"
   )
     .box-raro(v-if="quadrinho.raro")
       h3 Raro
@@ -11,6 +12,7 @@
       v-row(justify="center" align="stretch")
         v-col(cols="12")
           v-carousel(
+            cycle
             height="130"
             hide-delimiters
             :show-arrows="false"
@@ -35,11 +37,13 @@
             )
               v-icon mdi-camera-off
         v-col(col="12")
-          h2 R$ 50,00
+          h2 $ {{ quadrinho.prices | ajustarPreco }}
           h4.pt-1.subtitle-2 {{ quadrinho.title | cortarTexto }}
 </template>
 
 <script>
+import ajusteUrl from '@/mixins/ajusteUrl';
+
 export default {
   name: 'ListagemQuadrinhosCardInfos',
 
@@ -50,6 +54,8 @@ export default {
     },
   },
 
+  mixins: [ajusteUrl],
+
   filters: {
     cortarTexto(string) {
       if (string.length > 30) {
@@ -58,11 +64,15 @@ export default {
 
       return string;
     },
+
+    ajustarPreco([valor]) {
+      return typeof valor !== 'undefined' ? valor.price.toFixed(2) : 0.00;
+    },
   },
 
   methods: {
-    ajustarUrlImagem({ path, extension }) {
-      return `${path}.${extension}`;
+    detalharQuadrinho(quadrinho) {
+      this.$router.push({ name: 'DetalhesQuadrinhos', params: { id: quadrinho.id } });
     },
   },
 };

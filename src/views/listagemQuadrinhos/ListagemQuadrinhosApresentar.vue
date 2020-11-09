@@ -11,7 +11,7 @@
     v-row(justify="center")
       v-pagination(
         v-model="paginaAtual"
-        :length="paginacao.total"
+        :length="totalPaginas"
         total-visible=5
         color="primary"
         @input="alterarPagina"
@@ -56,6 +56,7 @@ export default {
 
   data: () => ({
     paginaAtual: 1,
+    totalPaginas: 1,
     authenticationParams: paramsSearch(),
     paginacao: {
       count: 0,
@@ -97,10 +98,11 @@ export default {
     },
 
     definirPaginacao(paginacao) {
-      const { limit, offset } = paginacao;
+      const { limit, offset, total } = paginacao;
       this.paginacao = paginacao;
 
       this.paginaAtual = (offset / limit) + 1;
+      this.totalPaginas = Math.ceil(total / limit);
     },
 
     alterarPagina(pagina) {
