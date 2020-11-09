@@ -17,24 +17,25 @@
         1152,320C1056,320,960,320,864,320C768,320,672,320,
         576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z`
       )
-    ListagemVideos
+    v-container
+      ListagemQuadrinhos
 </template>
 
 <script>
-import ListagemVideos from './listagemVideos/ListagemVideos.vue';
+import ListagemQuadrinhos from './listagemVideos/ListagemQuadrinhos.vue';
 
 export default {
   name: 'Home',
 
   components: {
-    ListagemVideos,
+    ListagemQuadrinhos,
   },
 };
 </script>
 
 <style scoped>
   .svg-posicao {
-    position: absolute;
+    position: fixed;
     bottom: 0;
   }
 </style>
