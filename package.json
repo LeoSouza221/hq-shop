@@ -1,5 +1,5 @@
 {
-  "name": "busca-youtube",
+  "name": "teste-crmall",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -10,6 +10,7 @@
   "dependencies": {
     "axios": "^0.21.0",
     "core-js": "^3.6.5",
+    "js-md5": "^0.7.3",
     "pug": "^3.0.0",
     "pug-plain-loader": "^1.0.0",
     "vue": "^2.6.11",

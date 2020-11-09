@@ -10,9 +10,14 @@ const routes = [
     component: () => import('../views/Home.vue'),
   },
   {
-    path: '/video/:id',
-    name: 'DetalheVideos',
-    component: () => import('../views/detalheVideos/detalheVideos.vue'),
+    path: '/quadrinho/:id',
+    name: 'DetalhesQuadrinhos',
+    component: () => import('../views/detalhesQuadrinhos/detalhesQuadrinhos.vue'),
+  },
+  {
+    path: '/carrinho',
+    name: 'Carrinho',
+    component: () => import('../views/carrinho/Carrinho.vue'),
   },
 ];
 
