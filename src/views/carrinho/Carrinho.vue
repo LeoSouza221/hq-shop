@@ -1,81 +1,32 @@
 <template lang="pug">
   .carrinho-container
-    v-row(justify="center")
-      v-card
-        v-data-table(
-          :headers="headers"
-          :items="itensCarrinho"
-          :items-per-page="itensCarrinho.length"
-          hide-default-footer
-        )
-          template(v-slot:item.images="{ item }")
-            v-img(
-              :src="ajustarUrlImagem(item.images[0])"
-              height="70"
-              width="50"
-              contain
-            )
-          template(v-slot:item.prices="{ item }")
-            span $ {{ item.prices[0].price }}
-          template(v-slot:item.id="{ item }")
-            v-btn(icon color="warning" @click="removerItemCarrinho(item)")
-              v-icon mdi-close
+    v-container
+      v-row(justify="center")
+        v-col(cols="12" sm="8" md="6")
+          CarrinhoTabela(
+            :itensCarrinho="itensCarrinho"
+          )
+        v-col(cols="12" sm="8" md="6")
+          CarrinhoDetalhes(
+            :itensCarrinho="itensCarrinho"
+          )
 </template>
 
 <script>
-import ajusteUrl from '@/mixins/ajusteUrl';
+import CarrinhoDetalhes from './CarrinhoDetalhes.vue';
+import CarrinhoTabela from './CarrinhoTabela.vue';
 
 export default {
   name: 'Carrinho',
 
-  mixins: [ajusteUrl],
-
-  data: () => ({
-    headers: [
-      {
-        text: 'Imagem',
-        align: 'center',
-        sortable: false,
-        value: 'images',
-        width: '50px',
-      },
-      {
-        text: 'Nome',
-        align: 'left',
-        sortable: false,
-        value: 'title',
-        width: '500px',
-      },
-      {
-        text: 'Qtde',
-        align: 'center',
-        sortable: false,
-        value: 'qtde',
-      },
-      {
-        text: 'Preço',
-        align: 'center',
-        sortable: false,
-        value: 'prices',
-      },
-      {
-        text: 'Remover',
-        align: 'center',
-        sortable: false,
-        value: 'id',
-      },
-    ],
-  }),
+  components: {
+    CarrinhoDetalhes,
+    CarrinhoTabela,
+  },
 
   computed: {
     itensCarrinho() {
       return this.$store.state.itemsCarrinho;
-    },
-  },
-
-  methods: {
-    removerItemCarrinho(quadrinho) {
-      this.$store.dispatch('remover', quadrinho);
     },
   },
 };
@@ -83,8 +34,7 @@ export default {
 
 <style>
   .carrinho-container {
+    margin-top: 100px;
     height: 100%;
-    display: flex;
-    align-items: center;
   }
 </style>

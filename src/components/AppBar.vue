@@ -10,15 +10,15 @@
       avatar
       overlap
       color="accent"
-      :content="qtdeItensCarrinho"
-      :value="qtdeItensCarrinho"
+      :content="tamanhoCarrinho"
+      :value="tamanhoCarrinho"
       dark
       offset-y="20"
     )
       v-btn(
         icon
         depressed
-        :disabled="qtdeItensCarrinho <= 0"
+        :disabled="tamanhoCarrinho <= 0"
         @click="abrirCarrinho"
       )
         v-icon mdi-cart
@@ -32,7 +32,7 @@ export default {
 
   computed: {
     ...mapGetters([
-      'qtdeItensCarrinho',
+      'tamanhoCarrinho',
     ]),
   },
 
