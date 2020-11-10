@@ -1,5 +1,9 @@
 <template lang="pug">
   .carrinho-detalhes
+    Alerta(
+      :abrirAlerta.sync="abrirAlerta"
+      :textoMensagem="textoMensagem"
+    )
     v-toolbar(
       flat
       height="50"
@@ -12,7 +16,7 @@
       v-col(cols="6")
         h4 Qtde Items:
       v-col(cols="6")
-        h4.text-right 6
+        h4.text-right {{ qtdeItensCarrinho }}
       v-col(cols="6")
         h4 Aplicar Cupom:
       v-col(cols="6")
@@ -28,7 +32,7 @@
       v-col(cols="6")
         h1 Total
       v-col(cols="6")
-        h1.text-right $ 10.00
+        h1.text-right $ {{ somaItemsCarrinho }}
     v-row(justify="center")
       v-btn(
         color="info"
@@ -37,8 +41,15 @@
 </template>
 
 <script>
+import Alerta from '@/components/Alerta.vue';
+import { mapGetters } from 'vuex';
+
 export default {
   name: 'CarrinhoDetalhes',
+
+  components: {
+    Alerta,
+  },
 
   props: {
     itensCarrinho: {
@@ -47,12 +58,29 @@ export default {
     },
   },
 
+  data: () => ({
+    abrirAlerta: false,
+    textoMensagem: '',
+  }),
+
+  computed: {
+    ...mapGetters([
+      'qtdeItensCarrinho',
+      'somaItemsCarrinho',
+    ]),
+  },
+
   methods: {
     finalizarCompra() {
-      this.$store.dispatch('listar')
-        .then(() => {
-          this.router.push('/');
-        });
+      this.textoMensagem = 'Compra realizada com sucesso';
+      this.abrirAlerta = true;
+
+      setTimeout(() => {
+        this.$store.dispatch('limpar')
+          .then(() => {
+            this.$router.push('/');
+          });
+      }, 2000);
     },
   },
 };

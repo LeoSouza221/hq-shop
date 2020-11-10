@@ -49,6 +49,15 @@ export default new Vuex.Store({
   },
 
   getters: {
-    qtdeItensCarrinho: (state) => state.itemsCarrinho.length,
+    qtdeItensCarrinho: (state) => state.itemsCarrinho
+      .reduce((acumulado, item) => acumulado + parseInt(item.qtde, 10), 0),
+
+    somaItemsCarrinho: (state) => state.itemsCarrinho.reduce((acumulado, item) => {
+      const [preco] = item.prices;
+
+      return acumulado + (preco.price * item.qtde);
+    }, 0).toFixed(2),
+
+    tamanhoCarrinho: (state) => state.itemsCarrinho.length,
   },
 });
