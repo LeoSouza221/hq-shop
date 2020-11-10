@@ -2,11 +2,11 @@
   .carrinho-container
     v-container
       v-row(justify="center")
-        v-col(cols="12" sm="8" md="6")
+        v-col(cols="12" sm="8" md="8" xl="6")
           CarrinhoTabela(
             :itensCarrinho="itensCarrinho"
           )
-        v-col(cols="12" sm="8" md="6")
+        v-col(cols="12" sm="8" md="4" xl="6")
           CarrinhoDetalhes(
             :itensCarrinho="itensCarrinho"
           )
