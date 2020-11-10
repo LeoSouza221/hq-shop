@@ -1,6 +1,9 @@
 <template lang="pug">
   v-app(
-    :style="{backgroundColor: $vuetify.theme.themes.dark.primary}"
+    :style=`{
+      backgroundColor: $vuetify.theme.themes.dark.primary
+    }`
+    class="background-app"
   )
     svg(
       xmlns="http://www.w3.org/2000/svg"
@@ -38,5 +41,10 @@ export default {
   .svg-posicao {
     position: fixed;
     bottom: 0;
+  }
+
+  .background-app {
+    background-image: url(https://images.unsplash.com/photo-1588497859490-85d1c17db96d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80) !important;
+    background-blend-mode: multiply;
   }
 </style>
