@@ -18,21 +18,22 @@
       v-col(cols="6")
         h4.text-right {{ qtdeItensCarrinho }}
       v-col(cols="6")
-        h4 Aplicar Cupom:
-      v-col(cols="6")
-        v-text-field(
-          dense
-          outlined
-          label="Cupom"
-          color="secondary"
-          type="number"
-        )
+        h4 Cupom:
+      v-col(cols="6" v-if="valorCupom === 0")
+        v-btn(
+          @click="gerarCupom"
+          color="primary"
+        ) Gerar Cupom
+      v-col(cols="6" v-else)
+       h4.text-right {{ valorCupom }}%
       v-col(cols="12")
         v-divider
+      v-col.py-0(cols="12" v-if="valorCupom > 0")
+        h6.text-caption.text-right.text-decoration-line-through $ {{ somaItemsCarrinho }}
       v-col(cols="6")
         h1 Total
       v-col(cols="6")
-        h1.text-right $ {{ somaItemsCarrinho }}
+        h1.text-right $ {{ somaTotalComDescontos }}
     v-row(justify="center")
       v-btn(
         color="info"
@@ -61,6 +62,7 @@ export default {
   data: () => ({
     abrirAlerta: false,
     textoMensagem: '',
+    valorCupom: 0,
   }),
 
   computed: {
@@ -68,6 +70,11 @@ export default {
       'qtdeItensCarrinho',
       'somaItemsCarrinho',
     ]),
+
+    somaTotalComDescontos() {
+      return (this.somaItemsCarrinho - ((this.somaItemsCarrinho * this.valorCupom) / 100))
+        .toFixed(2);
+    },
   },
 
   methods: {
@@ -81,6 +88,12 @@ export default {
             this.$router.push('/');
           });
       }, 2000);
+    },
+
+    gerarCupom() {
+      const numeroRandom = 1 + Math.floor((100 - 1) * Math.random());
+
+      this.valorCupom = numeroRandom;
     },
   },
 };

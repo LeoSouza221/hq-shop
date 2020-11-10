@@ -35,5 +35,5 @@ npm run lint --fix
 - Detalhes: Contém detalhes a respeito do quadrinho selecionado e um botao de "Comprar", que adiciona o item
 ao carrinho e a quantidade determinada.
 
-- Carrinho: Contém os quadrinhos adicionados ao carrinho, detalhes da compra e um botao de finalizar compra,
-que limpa o carrinho e retorna a pagina inicial.
+- Carrinho: Contém os quadrinhos adicionados ao carrinho, detalhes da compra, um botao que gera valores aleatorios de cupons
+e um botao de finalizar compra, que limpa o carrinho e retorna a pagina inicial.
