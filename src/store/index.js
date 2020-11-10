@@ -9,12 +9,12 @@ export default new Vuex.Store({
   },
 
   mutations: {
-    listaAdicionar(state, pedido) {
-      state.itemsCarrinho.push(pedido);
+    listaAdicionar(state, quadrinho) {
+      state.itemsCarrinho.push(quadrinho);
     },
 
-    listaRemover(state, pedido) {
-      const posicao = state.itemsCarrinho.findIndex((item) => item.id === pedido.id);
+    listaRemover(state, quadrinho) {
+      const posicao = state.itemsCarrinho.findIndex((item) => item.id === quadrinho.id);
 
       state.itemsCarrinho.splice(posicao, 1);
     },
@@ -25,8 +25,12 @@ export default new Vuex.Store({
   },
 
   actions: {
-    listar: ({ commit }, quadrinho) => new Promise((resolve) => {
-      commit('listaAdicionar', quadrinho);
+    listar: ({ commit, state }, quadrinho) => new Promise((resolve) => {
+      const posicao = state.itemsCarrinho.findIndex((item) => item.id === quadrinho.id);
+
+      if (posicao === -1) {
+        commit('listaAdicionar', quadrinho);
+      }
 
       resolve();
     }),

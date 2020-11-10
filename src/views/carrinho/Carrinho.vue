@@ -1,20 +1,25 @@
 <template lang="pug">
   .carrinho-container
     v-row(justify="center")
-      v-data-table(
-        :headers="headers"
-        :items="itensCarrinho"
-        :items-per-page="5"
-      )
-        template(v-slot:item.images="{ item }")
-          v-img(
-            :src="ajustarUrlImagem(item.images[0])"
-            height="70"
-            width="50"
-            contain
-          )
-        template(v-slot:item.prices="{ item }")
-          span {{ prices }}
+      v-card
+        v-data-table(
+          :headers="headers"
+          :items="itensCarrinho"
+          :items-per-page="itensCarrinho.length"
+          hide-default-footer
+        )
+          template(v-slot:item.images="{ item }")
+            v-img(
+              :src="ajustarUrlImagem(item.images[0])"
+              height="70"
+              width="50"
+              contain
+            )
+          template(v-slot:item.prices="{ item }")
+            span $ {{ item.prices[0].price }}
+          template(v-slot:item.id="{ item }")
+            v-btn(icon color="warning" @click="removerItemCarrinho(item)")
+              v-icon mdi-close
 </template>
 
 <script>
@@ -42,6 +47,12 @@ export default {
         width: '500px',
       },
       {
+        text: 'Qtde',
+        align: 'center',
+        sortable: false,
+        value: 'qtde',
+      },
+      {
         text: 'Preço',
         align: 'center',
         sortable: false,
@@ -61,12 +72,17 @@ export default {
       return this.$store.state.itemsCarrinho;
     },
   },
+
+  methods: {
+    removerItemCarrinho(quadrinho) {
+      this.$store.dispatch('remover', quadrinho);
+    },
+  },
 };
 </script>
 
 <style>
   .carrinho-container {
-    margin-top: 100px;
     height: 100%;
     display: flex;
     align-items: center;
