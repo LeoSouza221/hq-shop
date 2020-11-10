@@ -9,7 +9,6 @@ npm install
 ```
 VUE_APP_PUBLIC_KEY=SUA_CHAVE_PUBLICA
 VUE_APP_PRIVATE_KEY=SUA_CHAVE_PRIVADA
-
 ```
 
 ### Compilar para desenvolvimento (abrir na porta estipulada)
@@ -24,7 +23,7 @@ npm run build
 
 ### Erros de Lint
 ```
-npm run lint --fux
+npm run lint --fix
 ```
 
 ### Telas
