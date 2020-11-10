@@ -3,7 +3,7 @@
     :style=`{
       backgroundColor: $vuetify.theme.themes.dark.primary
     }`
-    class="teste"
+    class="background-app"
   )
     svg(
       xmlns="http://www.w3.org/2000/svg"
@@ -43,7 +43,7 @@ export default {
     bottom: 0;
   }
 
-  .teste {
+  .background-app {
     background-image: url(https://images.unsplash.com/photo-1588497859490-85d1c17db96d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80) !important;
     background-blend-mode: multiply;
   }
