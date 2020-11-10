@@ -30,9 +30,10 @@ npm run lint --fix
 
 - Principal: Contém a listagem de hqs paginadas, vinda da API da marvel assim como estipulado,
   cada item listado pode ser clicado e ao faze-lo será redirecionado para a tela de detalhes, por fim
-  há também uma toolbar com um botão em seu lado direito, que indica quantos items há no carrinho,
+  há também uma toolbar com um botão em seu lado direito, que indica quantos items há no carrinho.
 
 - Detalhes: Contém detalhes a respeito do quadrinho selecionado e um botao de "Comprar", que adiciona o item
-ao carrinho
+ao carrinho e a quantidade determinada.
 
-- Carrinho: Contém os quadrinhos adicionados ao carrinho
+- Carrinho: Contém os quadrinhos adicionados ao carrinho, detalhes da compra e um botao de finalizar compra,
+que limpa o carrinho e retorna a pagina inicial.
