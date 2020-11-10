@@ -48,6 +48,7 @@
                   block
                   color="info"
                   @click="adicionarAoCarrinho(quadrinho)"
+                  :disabled="quantidade < 1"
                 ) Comprar
 </template>
 

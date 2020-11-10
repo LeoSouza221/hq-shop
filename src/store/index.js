@@ -19,7 +19,7 @@ export default new Vuex.Store({
       state.itemsCarrinho.splice(posicao, 1);
     },
 
-    limparLista(state) {
+    limparItemsCarribgo(state) {
       state.itemsCarrinho = [];
     },
   },
@@ -37,6 +37,12 @@ export default new Vuex.Store({
 
     remover: ({ commit }, quadrinho) => new Promise((resolve) => {
       commit('listaRemover', quadrinho);
+
+      resolve();
+    }),
+
+    limpar: ({ commit }) => new Promise((resolve) => {
+      commit('limparItemsCarribgo');
 
       resolve();
     }),
